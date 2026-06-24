@@ -286,7 +286,6 @@ else if(payment instanceof NetBankingPayment) {
 ```
 
 Every new payment type requires modifying existing code.
-
 OCP violation.
 
 ---
