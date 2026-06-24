@@ -17,7 +17,6 @@ Animal a = new Animal(); // Compilation Error
 ### Reason
 
 An interface defines a contract but does not provide complete implementation for its abstract methods.
-
 Java does not know what code should execute when:
 
 ```java
