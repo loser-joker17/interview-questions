@@ -297,7 +297,6 @@ payment.processPayment();
 ```
 
 Use polymorphism.
-
 New payment types can be added without modifying existing code.
 
 ---
