@@ -507,7 +507,6 @@ if(...)
 ```
 
 and avoid creating dozens of classes.
-
 Preferred Pattern:
 
 ## Decorator Pattern
