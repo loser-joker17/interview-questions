@@ -87,7 +87,6 @@ class Penguin extends Bird {
 ## Why is this wrong?
 
 A Penguin cannot replace a Bird if the client expects every Bird to fly.
-
 This violates the **Liskov Substitution Principle**.
 
 ---
