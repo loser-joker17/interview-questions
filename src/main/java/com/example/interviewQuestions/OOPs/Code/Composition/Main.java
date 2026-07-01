@@ -23,11 +23,8 @@ public class Main {
 //        sendEmail();
 //
 //        Now imagine this code exists in 20 different places.
-//
 //        Tomorrow you add CryptoPayment.
-//
-//        You'll end up copying the same workflow again:
-//
+//        we'll end up copying the same workflow again:
 //        CryptoPayment crypto = new CryptoPayment();
 //
 //        validate();
@@ -40,9 +37,7 @@ public class Main {
 //        void pay() {
 //            validate();
 //            checkFraud();
-//
 //            processor.pay();
-//
 //            saveTransaction();
 //            sendEmail();
 //        }
