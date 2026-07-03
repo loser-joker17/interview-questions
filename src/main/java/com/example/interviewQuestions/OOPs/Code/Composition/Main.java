@@ -41,7 +41,6 @@ public class Main {
 //            saveTransaction();
 //            sendEmail();
 //        }
-
         Payment payment = new Payment(new BankTransfer());
         payment.pay();
 
