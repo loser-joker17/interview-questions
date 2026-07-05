@@ -610,12 +610,3 @@ HashMap<Frequency, DoublyLinkedList>
 Still supports O(1) average operations.
 
 ---
-
-# Interview Takeaways
-
-- Use **HashMap + Doubly Linked List**.
-- Store **Node references** in the HashMap.
-- Insert newly accessed nodes at the **front (MRU)**.
-- Evict nodes from the **tail (LRU)**.
-- Dummy nodes simplify implementation.
-- All primary operations run in **O(1)** average time.
