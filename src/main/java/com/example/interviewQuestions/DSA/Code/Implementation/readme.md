@@ -592,7 +592,6 @@ Uses
 ## LFU
 
 Removes the **Least Frequently Used** node.
-
 Each node additionally stores
 
 ```java
