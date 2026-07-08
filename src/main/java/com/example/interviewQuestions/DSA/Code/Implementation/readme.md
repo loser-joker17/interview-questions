@@ -463,9 +463,7 @@ Dummy nodes eliminate these edge cases.
 ## What happens if HashMap is removed?
 
 The cache still works using only a doubly linked list.
-
 However,
-
 Searching for a key requires traversal.
 
 Therefore
