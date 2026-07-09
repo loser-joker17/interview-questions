@@ -435,7 +435,6 @@ Map<Integer,Node>
 ```
 
 stores the address of the node directly.
-
 Hence removal and insertion remain **O(1)**.
 
 ---
@@ -455,7 +454,6 @@ if(node == head)
 ```java
 if(node == tail)
 ```
-
 Dummy nodes eliminate these edge cases.
 
 ---
