@@ -113,7 +113,6 @@ class Solution {
 
 ### What went wrong
 **First pass: skipped entirely** ("I don't know" → asked to move to the next question without attempting reasoning). On retry, the answer was strong: correctly identified that preorder + explicit `#` null-markers solves the ambiguity problem, and — unprompted — correctly explained *why inorder specifically fails* even with null markers (inorder doesn't visit the root first, so you can't identify the root position from the string alone; preorder/postorder both visit root at a fixed, predictable position).
-
 The only implementation bug: the `Codec` class used an instance variable `idx` to track position during deserialization, but never reset it to `0` at the start of `deserialize()`. This is a **statefulness bug** — calling `deserialize()` a second time on the same `Codec` instance would silently read from the wrong position (leftover from the previous call) or throw an `ArrayIndexOutOfBoundsException`.
 
 ### Resolution
