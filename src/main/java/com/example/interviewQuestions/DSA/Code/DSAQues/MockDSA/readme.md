@@ -129,7 +129,6 @@ class Solution {
 ---
 
 ## 3. Odd-Even Linked List
-
 **Problem:** Reorder a singly linked list so all odd-indexed nodes (1-based) come before all even-indexed nodes, preserving relative order within each group. O(1) space, O(n) time.
 
 ### Intuition
