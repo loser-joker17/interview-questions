@@ -124,6 +124,7 @@ class Solution {
 - **Time:** O(V + E) each node/edge visited once in the worst case (the `path.indexOf` call is O(V) but only triggered once, when the cycle is found, not per edge).
 - **Space:** O(V) for color array, recursion stack, and path list.
 - **Why not Kahn's + patch-up:** you could run Kahn's, then DFS *only* on the leftover in-degree>0 subgraph to recover order — but that's strictly more work (two algorithms) for the same result. DFS alone is both necessary and sufficient here.
+- 
 - **Recursion depth risk:** for very large/deep graphs (V ~ 10^5+), recursive DFS can stack-overflow; convert to an explicit stack-based DFS if that's a real constraint.
 
 ---
