@@ -209,7 +209,6 @@ class Solution {
 ---
 
 ## 5. Queue Using Two Stacks
-
 **Problem:** Implement FIFO queue operations (`push`, `pop`, `peek`, `empty`) using two stacks.
 
 ### Intuition
