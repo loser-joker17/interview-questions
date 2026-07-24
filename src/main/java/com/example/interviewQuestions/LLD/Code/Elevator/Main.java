@@ -26,7 +26,8 @@ public class Main {
         if (assigned != null) {
             InternalRequest internalReq = new InternalRequest(12, System.currentTimeMillis());
             assigned.addStop(internalReq);
-            System.out.println("Passenger inside Elevator " + assigned.getElevatorId() + " requested floor " + internalReq.getFloor());
+            System.out.println("Passenger inside Elevator " + assigned.getElevatorId()
+                    + " requested floor " + internalReq.getFloor());
         }
 
         System.out.println("\n--- Simulating movement ---");
@@ -42,12 +43,14 @@ public class Main {
             elevator.moveOneStep();
 
             if (elevator.getElevatorState() == ElevatorState.IDLE) {
-                System.out.println("Elevator " + elevator.getElevatorId() + " is now IDLE at floor " + elevator.getCurrentFloor());
+                System.out.println("Elevator " + elevator.getElevatorId()
+                        + " is now IDLE at floor " + elevator.getCurrentFloor());
                 break;
             }
 
             if (elevator.getCurrentFloor() != before) {
-                System.out.println("Elevator " + elevator.getElevatorId() + " moved to floor " + elevator.getCurrentFloor()
+                System.out.println("Elevator " + elevator.getElevatorId()
+                        + " moved to floor " + elevator.getCurrentFloor()
                         + " [" + elevator.getDoorState() + "]");
             }
         }
