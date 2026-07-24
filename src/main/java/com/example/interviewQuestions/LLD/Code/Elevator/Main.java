@@ -15,21 +15,18 @@ public class Main {
         // External request: floor 6 presses UP
         ExternalRequest req1 = new ExternalRequest(6, Direction.UPWARD, System.currentTimeMillis());
         Elevator assigned = manager.assignRequest(req1);
-        System.out.println("Request for floor 6 (UP) assigned to Elevator "
-                + (assigned != null ? assigned.getElevatorId() : "NONE"));
+        System.out.println("Request for floor 6 (UP) assigned to Elevator " + (assigned != null ? assigned.getElevatorId() : "NONE"));
 
         // External request: floor 9 presses DOWN
         ExternalRequest req2 = new ExternalRequest(9, Direction.DOWNWARD, System.currentTimeMillis());
         Elevator assigned2 = manager.assignRequest(req2);
-        System.out.println("Request for floor 9 (DOWN) assigned to Elevator "
-                + (assigned2 != null ? assigned2.getElevatorId() : "NONE"));
+        System.out.println("Request for floor 9 (DOWN) assigned to Elevator " + (assigned2 != null ? assigned2.getElevatorId() : "NONE"));
 
         // Internal request: passenger inside "assigned" elevator presses floor 12
         if (assigned != null) {
             InternalRequest internalReq = new InternalRequest(12, System.currentTimeMillis());
             assigned.addStop(internalReq);
-            System.out.println("Passenger inside Elevator " + assigned.getElevatorId()
-                    + " requested floor " + internalReq.getFloor());
+            System.out.println("Passenger inside Elevator " + assigned.getElevatorId() + " requested floor " + internalReq.getFloor());
         }
 
         System.out.println("\n--- Simulating movement ---");
@@ -45,14 +42,12 @@ public class Main {
             elevator.moveOneStep();
 
             if (elevator.getElevatorState() == ElevatorState.IDLE) {
-                System.out.println("Elevator " + elevator.getElevatorId()
-                        + " is now IDLE at floor " + elevator.getCurrentFloor());
+                System.out.println("Elevator " + elevator.getElevatorId() + " is now IDLE at floor " + elevator.getCurrentFloor());
                 break;
             }
 
             if (elevator.getCurrentFloor() != before) {
-                System.out.println("Elevator " + elevator.getElevatorId()
-                        + " moved to floor " + elevator.getCurrentFloor()
+                System.out.println("Elevator " + elevator.getElevatorId() + " moved to floor " + elevator.getCurrentFloor()
                         + " [" + elevator.getDoorState() + "]");
             }
         }
