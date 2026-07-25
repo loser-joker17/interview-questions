@@ -1,4 +1,4 @@
-package com.example.interviewQuestions.LLD.Code.Elevator;
+package com.example.interviewQuestions.LLD.Code.Elevator.Request;
 
 import com.example.interviewQuestions.LLD.Code.Elevator.State.RequestState;
 

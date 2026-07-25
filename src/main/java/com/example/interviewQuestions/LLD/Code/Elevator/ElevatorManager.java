@@ -1,5 +1,6 @@
 package com.example.interviewQuestions.LLD.Code.Elevator;
 
+import com.example.interviewQuestions.LLD.Code.Elevator.Request.ExternalRequest;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.Direction;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.ElevatorState;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.RequestState;
@@ -39,7 +40,7 @@ public class ElevatorManager {
         }
 
         if(bestElevator!=null){
-            bestElevator.addStop(request);
+            bestElevator.addStop(request.getFloor());
             request.setRequestState(RequestState.PENDING);
         }
         return bestElevator;

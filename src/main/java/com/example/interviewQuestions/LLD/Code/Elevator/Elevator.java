@@ -1,5 +1,7 @@
 package com.example.interviewQuestions.LLD.Code.Elevator;
 
+import com.example.interviewQuestions.LLD.Code.Elevator.Request.InternalRequest;
+import com.example.interviewQuestions.LLD.Code.Elevator.Request.Request;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.Direction;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.DoorState;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.ElevatorState;
@@ -27,8 +29,7 @@ public class Elevator {
         this.currentDirection = Direction.UPWARD;
     }
 
-    public void addStop(Request request){
-        int floor = request.getFloor();
+    public void addStop(int floor){
 
         if(floor > currentFloor){
             upStops.add(floor);

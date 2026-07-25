@@ -1,5 +1,7 @@
 package com.example.interviewQuestions.LLD.Code.Elevator;
 
+import com.example.interviewQuestions.LLD.Code.Elevator.Request.ExternalRequest;
+import com.example.interviewQuestions.LLD.Code.Elevator.Request.InternalRequest;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.Direction;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.ElevatorState;
 
@@ -25,7 +27,7 @@ public class Main {
         // Internal request: passenger inside "assigned" elevator presses floor 12
         if (assigned != null) {
             InternalRequest internalReq = new InternalRequest(12, System.currentTimeMillis());
-            assigned.addStop(internalReq);
+            assigned.addStop(internalReq.getFloor());
             System.out.println("Passenger inside Elevator " + assigned.getElevatorId()
                     + " requested floor " + internalReq.getFloor());
         }
