@@ -1,7 +1,5 @@
 package com.example.interviewQuestions.LLD.Code.Elevator;
 
-import com.example.interviewQuestions.LLD.Code.Elevator.Request.InternalRequest;
-import com.example.interviewQuestions.LLD.Code.Elevator.Request.Request;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.Direction;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.DoorState;
 import com.example.interviewQuestions.LLD.Code.Elevator.State.ElevatorState;
@@ -63,15 +61,20 @@ public class Elevator {
        }
     }
     public int getNextStop() {
-        if (currentDirection == Direction.UPWARD && !upStops.isEmpty()) {
-            return upStops.first();
+        if (currentDirection == Direction.UPWARD) {
+            if (!upStops.isEmpty()) return upStops.first();
+            if (!downStops.isEmpty()) {
+                currentDirection = Direction.DOWNWARD;  // reverse and continue
+                return downStops.first();
+            }
+        } else {
+            if (!downStops.isEmpty()) return downStops.first();
+            if (!upStops.isEmpty()) {
+                currentDirection = Direction.UPWARD;    // reverse and continue
+                return upStops.first();
+            }
         }
-
-        if (currentDirection == Direction.DOWNWARD && !downStops.isEmpty()) {
-            return downStops.first();
-        }
-
-        return -1;
+        return -1; // truly nothing pending in either direction
     }
     public int getElevatorId() {
         return elevatorId;
