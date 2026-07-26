@@ -241,7 +241,7 @@ public enum ElevatorState {
     IDLE,
     MOVING
     // Extensible: MAINTENANCE, OUT_OF_SERVICE, etc. can be added without
-    // touching Direction — this is the payoff of keeping the two orthogonal.
+    // touching 
 }
 ```
 
