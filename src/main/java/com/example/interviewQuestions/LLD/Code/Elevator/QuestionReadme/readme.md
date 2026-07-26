@@ -2,7 +2,6 @@
 
 A record of the mock Low-Level Design interview: requirements, design decisions,
 doubts raised and resolved, trade-offs, the LOOK algorithm, and final code.
-
 ---
 
 ## 1. Requirements Gathered
