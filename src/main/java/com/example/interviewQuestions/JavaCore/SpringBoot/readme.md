@@ -1,6 +1,6 @@
 # Spring Boot Mock Interview (2–5 YOE) — Review Notes
 
-A record of a 5-question mock interview covering Spring Boot fundamentals, with corrected answers and specific feedback on what was said incorrectly.
+A record of a 5 question mock interview covering Spring Boot fundamentals, with corrected answers and specific feedback on what was said incorrectly.
 
 ---
 
