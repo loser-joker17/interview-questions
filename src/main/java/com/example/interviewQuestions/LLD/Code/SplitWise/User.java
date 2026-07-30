@@ -2,13 +2,17 @@ package com.example.interviewQuestions.LLD.Code.SplitWise;
 
 public class User {
     private int userId;
-    private int userName;
+    private String userName;
 
+    public User(int userId,String userName){
+        this.userId=userId;
+        this.userName=userName;
+    }
     public int getUserId() {
         return userId;
     }
 
-    public int getUserName() {
+    public String getUserName() {
         return userName;
     }
 
@@ -16,7 +20,7 @@ public class User {
         this.userId = userId;
     }
 
-    public void setUserName(int userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 }
