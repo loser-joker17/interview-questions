@@ -16,6 +16,9 @@ public class Group {
         this.groupName=groupName;
         this.userList = new ArrayList<>();
     }
+    public void addUser(User user){
+        userList.add(user);
+    }
     public String getGroupName() {
         return groupName;
     }

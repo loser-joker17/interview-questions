@@ -8,15 +8,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Expense {
-    private int expenseId;
+    private final int expenseId;
+    private final User expensePaidBy;
     private BigDecimal amount;
     private final Map<User, BigDecimal> expenses;
     private SplitType splitType;
 
-    public Expense(int expenseId,BigDecimal amount,SplitType splitType) {
+    public Expense(int expenseId,BigDecimal amount,SplitType splitType,User expensePaidBy) {
         this.amount = amount;
         this.expenseId = expenseId;
         this.splitType = splitType;
+        this.expensePaidBy = expensePaidBy;
         this.expenses = new HashMap<>();
     }
 
@@ -35,6 +37,11 @@ public class Expense {
     public Map<User, BigDecimal> getExpenses() {
         return expenses;
     }
+
+    public User getExpensePaidBy() {
+        return expensePaidBy;
+    }
+
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
