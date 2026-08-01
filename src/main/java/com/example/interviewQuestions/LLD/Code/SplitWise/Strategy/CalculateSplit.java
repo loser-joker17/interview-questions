@@ -8,5 +8,5 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public interface CalculateSplit {
-    Map<User, BigDecimal> expenseCalculation(Expense expense, Group group,Map<User,BigDecimal>inputValues);
+    Map<User, BigDecimal> expenseCalculation(Expense expense, Group group, Map<User, BigDecimal> inputValues);
 }

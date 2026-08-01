@@ -6,23 +6,19 @@ import com.example.interviewQuestions.LLD.Code.SplitWise.User;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ExactSplit implements CalculateSplit{
-
+public class ExactSplit implements CalculateSplit {
     @Override
-    public Map<User, BigDecimal> expenseCalculation(Expense expense, Group group,Map<User,BigDecimal>inputValues){
+    public Map<User, BigDecimal> expenseCalculation(Expense expense, Group group, Map<User, BigDecimal> inputValues) {
         BigDecimal amount = expense.getAmount();
-        List<User> userList = group.getUserList();
 
-        BigDecimal shareAmount = amount;
+        BigDecimal sum = BigDecimal.ZERO;
+        for (BigDecimal v : inputValues.values()) sum = sum.add(v);
 
-        Map<User,BigDecimal> result = new HashMap<>();
-
-        for(User user : userList){
-            result.put(user,shareAmount);
+        if (sum.compareTo(amount) != 0) {
+            throw new IllegalArgumentException("Exact amounts must sum to total expense amount");
         }
-        return result;
+        return new HashMap<>(inputValues);
     }
 }
