@@ -18,11 +18,11 @@ public class ExactSplit implements CalculateSplit{
 
         BigDecimal shareAmount = amount;
 
-        Map<User,BigDecimal> map = new HashMap<>();
+        Map<User,BigDecimal> result = new HashMap<>();
 
         for(User user : userList){
-            map.put(user,shareAmount);
+            result.put(user,shareAmount);
         }
-        return map;
+        return result;
     }
 }
