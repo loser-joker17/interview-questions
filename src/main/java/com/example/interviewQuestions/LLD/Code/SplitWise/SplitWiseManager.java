@@ -35,7 +35,7 @@ public class SplitWiseManager {
             BigDecimal amount = entry.getValue();
 
             if(!debitor.equals(creditor)){
-                balanceSheet.updateAmount(creditor,debitor,amount);
+                balanceSheet.updateBalance(creditor,debitor,amount);
             }
         }
     }
