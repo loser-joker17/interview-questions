@@ -185,37 +185,118 @@ views lazily, only when asked.
 
 ## 5. Deep-Dive Q&A Round (Post-Code Review)
 
-**Q1 — Single strategy field, multiple split types added in sequence.**
-Bug: the manager was locked to one strategy at construction; a second
-expense of a different type would silently compute wrong shares with no
-error. Fix: strategy registry (see above).
+# Splitwise LLD — Deep-Dive Q&A
 
-**Q2 — SOLID principle violated by the `if/else` branch.**
-Open/Closed Principle — adding a new split type required modifying
-existing, tested code instead of only adding new code.
+## Q1 (Easy)
+**Single `CalculateSplit` field, then adding Equal then Percentage expenses.
+How does the current implementation handle this?**
 
-**Q3 — `ExactSplit` bug walkthrough.**
-Needed to iterate `inputValues` (not the group's full member list) and
-validate the sum against the expense total before accepting it.
+**A:** It doesn't — the manager was permanently locked to whichever single
+strategy was injected at construction. A second expense of a different
+`SplitType` would silently run through the wrong strategy, producing
+incorrect shares with no error raised. Fix: replace the single field with a
+registry, `Map<SplitType, CalculateSplit> strategies`, and look up the
+correct one per call via `strategies.get(expense.getSplitType())`.
 
-**Q4 — What does `Expense.shares` represent?**
-Always final calculated absolute-currency shares, never raw
-percentages/inputs — see the dedicated Q&A entry above.
+---
 
-**Q5 — Full numeric trace of `editExpense()`.**
-Reverse old shares → update expense fields → recompute new shares via the
-correct strategy → reapply new shares. Walked through with concrete numbers
-(₹900 → ₹1200, 3-way equal split).
+## Q2 (Medium)
+**What SOLID principle does the `if (splitType == EQUAL) {...}` branch
+violate? How to redesign?**
 
-**Q6 — Why single-direction storage, precisely?**
-Not primarily "prevents duplicate entries" (an underspecified answer) — the
-precise reasons are: no dual-write sync risk, simpler single-lookup reads,
-and enforcing the normalized-ledger invariant.
+**A:** Open/Closed Principle — adding a new split type (e.g.,
+`SHARE_BY_WEIGHT`) would require modifying existing, already-tested code
+inside `addExpense()`. The registry from Q1 fixes this: a new split type
+only needs a new `CalculateSplit` implementation plus one registration line
+— `addExpense()` itself never changes again.
 
-**Q7 — Same two users across two different groups — combine balances?**
-Keep separate, scope `BalanceSheet` per group; offer any "combined view" as
-a read-time aggregation layer on top, not a merged ledger. See dedicated
-entry above — this was the most consequential open question of the round.
+---
+
+## Q3 (Medium)
+**`ExactSplit` currently sets `shareAmount = amount` for every user. Given
+Vijay→500, Ravi→300, Akshat→200 on a ₹1000 expense, how should it actually
+work?**
+
+**A:** Iterate `inputValues` (the caller-supplied per-person amounts)
+directly — not the group's full member list — and use each value as-is per
+user. Critically, also validate: sum all values in `inputValues` and confirm
+it equals `expense.getAmount()`, throwing if it doesn't. Without that check,
+mismatched inputs (e.g., summing to ₹900 against a ₹1000 expense) would
+silently lose money from the ledger.
+
+---
+
+## Q4 (Medium)
+**What does `Expense.shares` (`Map<User, BigDecimal>`) represent? Final
+shares, percentages, or exact amounts? Can one field serve all three split
+types?**
+
+**A:** It always represents final calculated shares in absolute currency,
+regardless of split type — never raw percentages, never unvalidated raw
+exact input. Yes, the same field can serve all three types, but only
+because each `CalculateSplit` implementation is responsible for converting
+its own input format into this normalized output before returning.
+`PercentageSplit` must multiply `percentage × total ÷ 100` before writing to
+the map — if it stored a raw "30" meaning 30%, any downstream consumer (like
+`BalanceSheet`, which expects currency) would silently misinterpret it as
+₹30.
+
+---
+
+## Q5 (Hard)
+**Vijay paid ₹900 (₹300 each, Ravi/Akshat/Vijay), then the expense is
+edited to ₹1200 total, ₹400 each. Walk through the ledger update sequence
+(no code).**
+
+**A:**
+1. **Reverse the old expense's effect** — for each of the old non-payer
+   shares, subtract it from the ledger: Ravi's and Akshat's ₹300 debts to
+   Vijay are removed/netted back toward zero.
+2. **Update the expense's own fields** — `amount` becomes ₹1200 (split type
+   unchanged, still equal).
+3. **Recompute new shares** via the `EqualSplit` strategy — ₹400 each across
+   the 3 participants.
+4. **Reapply new shares** — Vijay's own ₹400 share is skipped (he's the
+   payer, not a debtor to himself); Ravi and Akshat each get a fresh ₹400
+   debt applied to Vijay.
+
+End state: Ravi owes Vijay ₹400, Akshat owes Vijay ₹400 — the old ₹300
+amounts are fully purged, no double-counting.
+
+---
+
+## Q6 (Hard)
+**Why single-direction storage (`Map<User, Map<User, BigDecimal>>`)
+instead of storing both `balance[A][B]` and `balance[B][A]`? What advantage
+does this give?**
+
+**A:** Three precise advantages (not just "avoids duplicates"):
+- **No dual-write sync risk** — storing both directions means every update
+  must touch 2 entries in lockstep, or a bug leaves them inconsistent (one
+  updated, the other stale).
+- **Simpler reads** — `getBalance(debtor, creditor)` is a single lookup,
+  not "read both directions and subtract."
+- **Enforces a normalized-ledger invariant** — at most one live entry
+  exists between any two users at any time, directly answering "who owes
+  whom" with no extra logic needed at read time.
+
+---
+
+## Q7 (Very Hard)
+**Same two users belong to two different groups: Trip Group (Ravi owes
+Vijay ₹500) and Food Group (Vijay owes Ravi ₹300). Should balances combine
+automatically, or stay separate? Justify.**
+
+**A:** Keep them separate — do not auto-combine across groups. Balances are
+scoped to the social/financial context they arose in; netting them into
+"Ravi owes Vijay ₹200 net" makes an implicit product decision users may not
+want (e.g., wanting to settle trip debt with trip-group members present,
+independent of grocery money). Design implication: `BalanceSheet` should be
+scoped per group (`Map<Group, BalanceSheet>`), not global across a user's
+account. A "combined view across all groups" — which real Splitwise does
+offer — should be a separate, read-time aggregation layer built on top of
+the per-group ledgers for display purposes only, while each group's ledger
+stays independently authoritative and auditable.
 
 ---
 
