@@ -1,6 +1,8 @@
 package com.example.interviewQuestions.LLD.Code.SplitWise;
 
+import com.example.interviewQuestions.LLD.Code.SplitWise.Enums.SplitType;
 import com.example.interviewQuestions.LLD.Code.SplitWise.Ledger.BalanceSheet;
+import com.example.interviewQuestions.LLD.Code.SplitWise.Strategy.CalculateSplit;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,17 +13,24 @@ import java.util.Map;
 public class SplitWiseManager {
     private Map<Group, List<Expense>> shareExpenses;
     private BalanceSheet balanceSheet;
+    Private final CalculateSplit calculateSplit;
 
-    public SplitWiseManager(BalanceSheet balanceSheet){
+    public SplitWiseManager(BalanceSheet balanceSheet,CalculateSplit calculateSplit){
         this.balanceSheet=balanceSheet;
         this.shareExpenses=new HashMap<>();
+        this.calculateSplit=calculateSplit;
     }
-    public void addExpense(Group group,Expense expense){
+    public void addExpense(Group group,Expense expense,Map<User,BigDecimal>inputValues){
         shareExpenses.computeIfAbsent(group,k-> new ArrayList<>()).add(expense);
 
         User creditor = expense.getExpensePaidBy();
 
-        for(Map.Entry<User, BigDecimal> entry : expense.getExpenses().entrySet()){
+        Map<User,BigDecimal> shares = new HashMap<>();
+        if(expense.getSplitType()==SplitType.EQUAL){
+            shares = calculateSplit.expenseCalculation(expense,group,inputValues);
+        }
+
+        for(Map.Entry<User, BigDecimal> entry : shares.entrySet()){
             User debitor = entry.getKey();
             BigDecimal amount = entry.getValue();
 
