@@ -738,12 +738,6 @@ public class MainClient {
 
 ---
 
-## 7. Overall Evaluation Summary
-
-| Round | Score | Key strength | Key gap |
-|---|---|---|---|
-| Round 1 — Elevator | 7/10 | Self-identified the LOOK fairness trade-off unprompted | Verbal-to-code gap on agreed fixes |
-| Round 2 — Splitwise | 6/10 | Excellent, proactive requirements gathering; honest about difficulty | Same verbal-to-code gap, more pronounced; 2 of 7 deep-dive questions (Q4, Q7) left unanswered |
 
 ### Standing pattern across both rounds
 Reasoning quality is consistently ahead of code output. The recurring fix:
