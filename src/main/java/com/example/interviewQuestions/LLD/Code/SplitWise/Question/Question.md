@@ -738,7 +738,6 @@ public class MainClient {
 
 ---
 
-
 ### Standing pattern across both rounds
 Reasoning quality is consistently ahead of code output. The recurring fix:
 **close every flagged bug before moving to the next question** — treat
