@@ -12,7 +12,7 @@ import java.util.Map;
 public class PercentageSplit implements CalculateSplit {
     @Override
     public Map<User, BigDecimal> expenseCalculation(Expense expense, Group group, Map<User, BigDecimal> inputValues) {
-        System.out.println("Percentage Split Called");
+        System.out.println("Percentage Split called");
         BigDecimal amount = expense.getAmount();
         BigDecimal totalPercentage = BigDecimal.ZERO;
         Map<User, BigDecimal> result = new HashMap<>();
