@@ -14,6 +14,7 @@ public class EqualSplit implements CalculateSplit {
     @Override
     public Map<User, BigDecimal> expenseCalculation(Expense expense, Group group, Map<User, BigDecimal> inputValues) {
         BigDecimal amount = expense.getAmount();
+        System.out.println("Equal Split Called");
         List<User> userList = group.getUserList();
         int n = userList.size();
 

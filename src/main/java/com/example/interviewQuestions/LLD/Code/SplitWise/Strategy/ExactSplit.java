@@ -12,6 +12,7 @@ public class ExactSplit implements CalculateSplit {
     @Override
     public Map<User, BigDecimal> expenseCalculation(Expense expense, Group group, Map<User, BigDecimal> inputValues) {
         BigDecimal amount = expense.getAmount();
+        System.out.println("Exact Split Called");
 
         BigDecimal sum = BigDecimal.ZERO;
         for (BigDecimal v : inputValues.values()) sum = sum.add(v);

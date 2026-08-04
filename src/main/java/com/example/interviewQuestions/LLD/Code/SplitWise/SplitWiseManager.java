@@ -31,8 +31,7 @@ public class SplitWiseManager {
         applyShares(expense.getExpensePaidBy(), shares, false);
     }
 
-    public void editExpense(Group group, Expense oldExpense, BigDecimal newAmount,
-                            SplitType newSplitType, Map<User, BigDecimal> newInputValues) {
+    public void editExpense(Group group, Expense oldExpense, BigDecimal newAmount, SplitType newSplitType, Map<User, BigDecimal> newInputValues) {
         // 1. Reverse the old expense's effect on the ledger
         applyShares(oldExpense.getExpensePaidBy(), oldExpense.getShares(), true);
 
