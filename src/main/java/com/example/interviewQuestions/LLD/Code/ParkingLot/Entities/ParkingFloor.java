@@ -15,7 +15,7 @@ public class ParkingFloor {
         this.spots=new HashMap<>();
     }
 
-    public void findAvailableSpot(){
+    public ParkingSpot findAvailableSpot(){
 
     }
     public int getFloorNumber() {

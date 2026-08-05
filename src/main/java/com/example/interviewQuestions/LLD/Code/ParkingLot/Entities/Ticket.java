@@ -10,10 +10,12 @@ public class Ticket {
     private LocalTime entryTime;
     private LocalTime exitTime;
 
-    public Ticket(String ticketNumber,LocalTime entryTime,LocalTime exitTime){
+    public Ticket(String ticketNumber,LocalTime entryTime,LocalTime exitTime,ParkingSpot parkingSpot,Vehicle vehicle){
         this.ticketNumber=ticketNumber;
         this.entryTime=entryTime;
         this.exitTime=exitTime;
+        this.parkingSpot=parkingSpot;
+        this.vehicle=vehicle;
     }
 
     public double getDuration(LocalTime entryTime,LocalTime exitTime){
