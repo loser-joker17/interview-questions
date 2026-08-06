@@ -13,6 +13,7 @@ public class ParkingSpot {
     public ParkingSpot(String spotId,SpotType spotType){
         this.spotId=spotId;
         this.spotType=spotType;
+        this.isOccupied = new AtomicBoolean(false);
     }
 
     public void release(){
@@ -27,5 +28,9 @@ public class ParkingSpot {
 
     public SpotType getSpotType() {
         return spotType;
+    }
+
+    public AtomicBoolean getIsOccupied() {
+        return isOccupied;
     }
 }

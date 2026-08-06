@@ -15,8 +15,15 @@ public class ParkingFloor {
         this.spots=new HashMap<>();
     }
 
-    public ParkingSpot findAvailableSpot(){
-
+    public ParkingSpot findAvailableSpot(SpotType spotType){
+        List<ParkingSpot> parkingSpots = spots.get(spotType);
+        for(ParkingSpot parkingSpot : parkingSpots){
+            if(parkingSpot.getIsOccupied().equals(false)){
+                return parkingSpot;
+            }
+        }
+        System.out.println("No available parking spot");
+        return null;
     }
     public int getFloorNumber() {
         return floorNumber;

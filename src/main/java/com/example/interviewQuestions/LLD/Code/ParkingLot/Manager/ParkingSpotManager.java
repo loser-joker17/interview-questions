@@ -3,6 +3,7 @@ package com.example.interviewQuestions.LLD.Code.ParkingLot.Manager;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.ParkingFloor;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.ParkingSpot;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.Vehicle;
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Enums.SpotType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,24 @@ public class ParkingSpotManager {
     }
 
     public ParkingSpot findSpot(Vehicle vehicle){
+        SpotType spotType = getRequiredSpotType(vehicle);
         for(ParkingFloor floor : floors){
-            ParkingSpot spot = floor.findAvailableSpot();
+            ParkingSpot spot = floor.findAvailableSpot(spotType);
 
             if(spot!=null){
                 return spot;
             }
         }
         return null;
+    }
+    private SpotType getRequiredSpotType(Vehicle vehicle) {
+        switch(vehicle.getVehicleType()) {
+            case BIKE:
+                return SpotType.SMALL;
+            case CAR:
+                return SpotType.COMPACT;
+            case BUS:
+                return SpotType.LARGE;
+        }
     }
 }
