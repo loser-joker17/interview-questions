@@ -1,8 +1,13 @@
 package com.example.interviewQuestions.LLD.Code.ParkingLot;
 
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.ParkingSpot;
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.Ticket;
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.Vehicle;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.FeeCalculator;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.ParkingSpotManager;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.TicketManager;
+
+import java.time.LocalTime;
 
 public class ParkingLotManager {
     private TicketManager ticketManager;
@@ -15,7 +20,11 @@ public class ParkingLotManager {
         this.parkingSpotManager=parkingSpotManager;
         this.feeCalculator=feeCalculator;
     }
-    public reserveSpot(){
+    public Ticket parkVehicle(Vehicle vehicle){
+        ParkingSpot parkingSpot = parkingSpotManager.reserveSpot(vehicle);
+        Ticket ticket = ticketManager.createTickets(vehicle,parkingSpot);
 
+        return ticket;
     }
+
 }

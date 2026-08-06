@@ -19,7 +19,7 @@ public class ParkingSpotManager {
         floors.add(parkingFloor);
     }
 
-    public ParkingSpot findSpot(Vehicle vehicle){
+    public ParkingSpot reserveSpot(Vehicle vehicle){
         SpotType spotType = getRequiredSpotType(vehicle);
         for(ParkingFloor floor : floors){
             ParkingSpot spot = floor.findAvailableSpot(spotType);
@@ -28,6 +28,7 @@ public class ParkingSpotManager {
                 return spot;
             }
         }
+        System.out.println();
         return null;
     }
     private SpotType getRequiredSpotType(Vehicle vehicle) {
@@ -39,5 +40,6 @@ public class ParkingSpotManager {
             case BUS:
                 return SpotType.LARGE;
         }
+        return null;
     }
 }

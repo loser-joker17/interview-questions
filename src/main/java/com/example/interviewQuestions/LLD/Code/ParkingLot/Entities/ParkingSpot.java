@@ -17,10 +17,15 @@ public class ParkingSpot {
     }
 
     public void release(){
-
+       this.vehicle=null;
+       isOccupied.set(false);
     }
-    public void assignSpot(Vehicle vehicle){
-
+    public boolean assignVehicle(Vehicle vehicle){
+        if (isOccupied.compareAndSet(false, true)) {
+            this.vehicle = vehicle;
+            return true;
+        }
+        return false;
     }
     public String getSpotId() {
         return spotId;

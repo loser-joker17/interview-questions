@@ -22,7 +22,6 @@ public class ParkingFloor {
                 return parkingSpot;
             }
         }
-        System.out.println("No available parking spot");
         return null;
     }
     public int getFloorNumber() {

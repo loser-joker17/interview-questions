@@ -19,7 +19,7 @@ public class Ticket {
     }
 
     public double getDuration(LocalTime entryTime,LocalTime exitTime){
-        return Duration.between(entryTime,exitTime).toHours()/(60.0);
+        return Duration.between(entryTime,exitTime).toMinutes()/(60.0);
     }
 
     public String getTicketNumber() {
