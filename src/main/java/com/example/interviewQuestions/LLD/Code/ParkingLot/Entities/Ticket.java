@@ -34,6 +34,10 @@ public class Ticket {
         return vehicle;
     }
 
+    public ParkingSpot getParkingSpot() {
+        return parkingSpot;
+    }
+
     public String getTicketNumber() {
         return ticketNumber;
     }

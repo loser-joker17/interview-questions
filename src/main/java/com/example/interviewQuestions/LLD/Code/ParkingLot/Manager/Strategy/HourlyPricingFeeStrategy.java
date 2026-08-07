@@ -1,6 +1,8 @@
 package com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.Strategy;
 
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.Ticket;
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.Vehicle;
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Enums.SpotType;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Enums.VehicleType;
 
 import java.time.LocalTime;
@@ -9,21 +11,24 @@ import java.util.Map;
 
 public class HourlyPricingFeeStrategy implements FeeStrategy{
 
-    Map<VehicleType,Double> hourlyRates;
+    Map<SpotType,Double> hourlyRates;
 
     public HourlyPricingFeeStrategy(){
         hourlyRates = new HashMap<>();
-        hourlyRates.put(VehicleType.BIKE,100.0);
-        hourlyRates.put(VehicleType.CAR,300.0);
-        hourlyRates.put(VehicleType.BUS,500.0);
+        hourlyRates.put(SpotType.SMALL,100.0);
+        hourlyRates.put(SpotType.COMPACT,300.0);
+        hourlyRates.put(SpotType.LARGE,500.0);
     }
     @Override
     public double calculateFee(Ticket ticket){
         LocalTime entryTime = ticket.getEntryTime();
         LocalTime exitTime = ticket.getExitTime();
-        VehicleType vehicleType = ticket.getVehicle().getVehicleType();
+        SpotType spotType = ticket.getParkingSpot().getSpotType();
 
-        double vehicleRate = hourlyRates.get(vehicleType);
+        Double vehicleRate = hourlyRates.get(spotType);
+        if (vehicleRate == null) {
+            throw new IllegalStateException("No hourly rate configured for spot type: " + spotType);
+        }
         double duration = ticket.getDuration(entryTime,exitTime);
 
         double fareAmount = duration*vehicleRate;
