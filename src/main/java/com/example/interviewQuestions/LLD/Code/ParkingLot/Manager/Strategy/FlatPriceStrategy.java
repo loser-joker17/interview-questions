@@ -2,8 +2,9 @@ package com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.Strategy;
 
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Entities.Ticket;
 
-import java.time.LocalTime;
-
-public interface FeeStrategy {
-    public double calculateFee(Ticket ticket);
+public class FlatPriceStrategy implements FeeStrategy{
+    @Override
+    public double calculateFee(Ticket ticket){
+        return 400.0;
+    }
 }

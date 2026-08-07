@@ -31,6 +31,9 @@ public class ParkingSpotManager {
         System.out.println();
         return null;
     }
+    public void releaseSpot(ParkingSpot spot){
+        spot.release();
+    }
     private SpotType getRequiredSpotType(Vehicle vehicle) {
         switch(vehicle.getVehicleType()) {
             case BIKE:

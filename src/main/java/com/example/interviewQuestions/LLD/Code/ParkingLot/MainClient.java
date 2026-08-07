@@ -7,6 +7,8 @@ import com.example.interviewQuestions.LLD.Code.ParkingLot.Enums.SpotType;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Enums.VehicleType;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.FeeCalculator;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.ParkingSpotManager;
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.Strategy.FeeStrategy;
+import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.Strategy.HourlyPricingFeeStrategy;
 import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.TicketManager;
 
 public class MainClient {
@@ -16,7 +18,9 @@ public class MainClient {
         // Does it search collections? // Manager.
         TicketManager ticketManager = new TicketManager();
         ParkingSpotManager parkingSpotManager = new ParkingSpotManager();
-        FeeCalculator feeCalculator = new FeeCalculator();
+        FeeStrategy feeStrategy = new HourlyPricingFeeStrategy();
+
+        FeeCalculator feeCalculator = new FeeCalculator(feeStrategy);
 
         ParkingLotManager parkingLotManager = new ParkingLotManager(ticketManager, parkingSpotManager, feeCalculator);
 

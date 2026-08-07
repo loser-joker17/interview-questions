@@ -22,6 +22,18 @@ public class Ticket {
         return Duration.between(entryTime,exitTime).toMinutes()/(60.0);
     }
 
+    public LocalTime getEntryTime() {
+        return entryTime;
+    }
+
+    public LocalTime getExitTime() {
+        return exitTime;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
     public String getTicketNumber() {
         return ticketNumber;
     }
