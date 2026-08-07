@@ -225,24 +225,7 @@ Two consistent failure modes across the whole session:
 
 ---
 
-## 9. Mock Interview Rating
-
-**Overall: 7/10 — Strong Pass for 3 YOE**, borderline Strong Pass/Exceeds on design thinking, held back by concurrency depth.
-
-| Area | Score | Notes |
-|---|---|---|
-| Requirements gathering | 9/10 | Strong, unprompted clarifying questions before designing |
-| Core entity modeling | 7/10 | Solid first pass; needed prompting to fix Ticket↔Spot linkage and O(n) exit lookup |
-| Design patterns (Strategy/Factory) | 8/10 | Correct final choices with real justification; self-corrected well under pressure |
-| SOLID / responsibility design | 8/10 | Clean SRP breakdown, correctly traced data flow, no class overlap |
-| Concurrency | 5/10 | Right instincts (per-spot locking, lock-free CAS), but couldn't self-derive multi-field atomicity or articulate CAS-vs-lock correctly unprompted |
-| Communication/reasoning | 8/10 | Explained tradeoffs, not just pattern names — this matters a lot in real interviews |
-
-**Verdict:** Would likely clear an LLD round at most mid-to-large product companies at SDE-2 / 3 YOE level. At bars that push harder on concurrency (fintech, infra-heavy companies, some FAANG rounds), the multi-field atomicity gap is worth drilling separately before the real interview.
-
----
-
-## 10. Final Corrected Code
+## 9. Final Corrected Code
 
 ### Enums
 

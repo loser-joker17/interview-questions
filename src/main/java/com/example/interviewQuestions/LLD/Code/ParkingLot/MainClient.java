@@ -13,8 +13,8 @@ import com.example.interviewQuestions.LLD.Code.ParkingLot.Manager.TicketManager;
 
 public class MainClient {
     public static void main(String[] args) {
-        //Does this method change only this object's state? then Put it inside the Entity.
-        //Does this method coordinate multiple objects? then Manager / Service.
+        // Does this method change only this object's state? then Put it inside the Entity.
+        // Does this method coordinate multiple objects? then Manager / Service.
         // Does it search collections? // Manager.
         TicketManager ticketManager = new TicketManager();
         ParkingSpotManager parkingSpotManager = new ParkingSpotManager();
