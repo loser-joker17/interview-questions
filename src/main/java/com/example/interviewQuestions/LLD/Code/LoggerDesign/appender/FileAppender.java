@@ -1,4 +1,10 @@
 package com.example.interviewQuestions.LLD.Code.LoggerDesign.appender;
 
-public class FileAppender {
+import com.example.interviewQuestions.LLD.Code.LoggerDesign.LogMessage;
+
+public class FileAppender implements Appender{
+    @Override
+    public void append(LogMessage message){
+        System.out.println("Message added to File" + message);
+    }
 }

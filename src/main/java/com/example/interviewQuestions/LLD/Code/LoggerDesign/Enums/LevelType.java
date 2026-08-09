@@ -1,6 +1,6 @@
 package com.example.interviewQuestions.LLD.Code.LoggerDesign.Enums;
 
-enum LevelType {
+public enum LevelType {
     TRACE(0),
     DEBUG(1),
     INFO(2),
