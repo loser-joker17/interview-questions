@@ -17,7 +17,7 @@ public class Logger {
         if(level.getSeverity()<threshold.getSeverity()){
             return;
         }
-        LogMessage logMessage = new LogMessage(LevelType.INFO,message, LocalDateTime.now());
+        LogMessage logMessage = new LogMessage(level,message, LocalDateTime.now());
         appendManager.append(logMessage);
     }
 
