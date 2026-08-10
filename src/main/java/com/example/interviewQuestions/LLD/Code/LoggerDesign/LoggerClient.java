@@ -4,7 +4,6 @@ import com.example.interviewQuestions.LLD.Code.LoggerDesign.Enums.LevelType;
 import com.example.interviewQuestions.LLD.Code.LoggerDesign.Formatter.Formatter;
 import com.example.interviewQuestions.LLD.Code.LoggerDesign.Formatter.JsonFormatter;
 import com.example.interviewQuestions.LLD.Code.LoggerDesign.Formatter.SimpleFormatter;
-import com.example.interviewQuestions.LLD.Code.LoggerDesign.appender.Appender;
 import com.example.interviewQuestions.LLD.Code.LoggerDesign.appender.ConsoleAppender;
 import com.example.interviewQuestions.LLD.Code.LoggerDesign.appender.FileAppender;
 
