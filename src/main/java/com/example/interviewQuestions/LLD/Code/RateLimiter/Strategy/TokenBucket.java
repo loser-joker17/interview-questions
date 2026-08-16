@@ -18,7 +18,7 @@ public class TokenBucket implements RateLimiter {
         this.lastReffilTimeStamp = new ConcurrentHashMap<>();
     }
     @Override
-    public synchronized boolean allowRate(Request request){
+    public synchronized boolean allowRequest(Request request){
         String userId = request.getUserId();
         Long currentTimeStamp = System.currentTimeMillis();  // as the token are puting at rate
         lastReffilTimeStamp.putIfAbsent(userId, currentTimeStamp);

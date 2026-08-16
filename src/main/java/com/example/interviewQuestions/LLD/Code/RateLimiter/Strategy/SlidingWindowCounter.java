@@ -4,7 +4,7 @@ import com.example.interviewQuestions.LLD.Code.RateLimiter.Request.Request;
 
 public class SlidingWindowCounter implements RateLimiter{
     @Override
-    public synchronized boolean allowRate(Request request){
+    public synchronized boolean allowRequest(Request request){
         return true;
     }
 }

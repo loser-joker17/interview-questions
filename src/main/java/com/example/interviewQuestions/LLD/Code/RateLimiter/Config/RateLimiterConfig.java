@@ -4,9 +4,9 @@ public class RateLimiterConfig {
     private final int capacity;        // used by TokenBucket, LeakingBucket
     private final int refillRate;      // used by TokenBucket
     private final int maxRequests;     // used by FixedWindow, SlidingWindow variants
-    private final int windowSizeSeconds; // used by FixedWindow, SlidingWindow variants
+    private final Long windowSizeSeconds; // used by FixedWindow, SlidingWindow variants
 
-    public RateLimiterConfig(int capacity, int refillRate, int maxRequests, int windowSizeSeconds) {
+    public RateLimiterConfig(int capacity, int refillRate, int maxRequests, Long windowSizeSeconds) {
         this.capacity = capacity;
         this.refillRate = refillRate;
         this.maxRequests = maxRequests;
@@ -16,5 +16,5 @@ public class RateLimiterConfig {
     public int getCapacity() { return capacity; }
     public int getRefillRate() { return refillRate; }
     public int getMaxRequests() { return maxRequests; }
-    public int getWindowSizeSeconds() { return windowSizeSeconds; }
+    public Long getWindowSizeSeconds() { return windowSizeSeconds; }
 }

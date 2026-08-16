@@ -18,7 +18,7 @@ public class SlidingWindowFixed implements RateLimiter{
         this.requestCounts=new ConcurrentHashMap<>();
     }
     @Override
-    public synchronized boolean allowRate(Request request){
+    public synchronized boolean allowRequest(Request request){
         Long currentTime = System.currentTimeMillis();
         String userId = request.getUserId();
         if(currentTime-windowStart>=windowSizeMills){
