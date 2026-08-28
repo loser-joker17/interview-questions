@@ -70,7 +70,6 @@ Benefits:
 class Bird {
     void fly() {}
 }
-
 class Sparrow extends Bird {}
 
 class Penguin extends Bird {
