@@ -48,7 +48,6 @@ Instead:
 
 ```java
 Notification notification = new EmailNotification();
-
 notification = new EncryptionDecorator(notification);
 notification = new RetryDecorator(notification);
 notification = new CompressionDecorator(notification);
