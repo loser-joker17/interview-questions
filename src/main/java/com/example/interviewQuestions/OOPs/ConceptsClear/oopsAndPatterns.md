@@ -61,7 +61,6 @@ Benefits:
 ---
 
 # Question 2: Liskov Substitution Principle (LSP)
-
 ## Scenario
 
 ```java
