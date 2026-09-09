@@ -54,7 +54,6 @@ notification = new CompressionDecorator(notification);
 ```
 
 Benefits:
-
 * Dynamic behavior composition
 * Open/Closed Principle
 * Better maintainability
