@@ -43,7 +43,6 @@ Animal a = new Animal(); // Compilation Error
 ```
 
 ### Reason
-
 Abstract classes can contain abstract methods that have no implementation.
 The class is considered incomplete.
 
