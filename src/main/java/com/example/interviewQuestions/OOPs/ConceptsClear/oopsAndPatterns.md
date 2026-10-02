@@ -86,7 +86,6 @@ This violates the **Liskov Substitution Principle**.
 ---
 
 ## Better Design
-
 ```java
 abstract class Bird {
     abstract void eat();
