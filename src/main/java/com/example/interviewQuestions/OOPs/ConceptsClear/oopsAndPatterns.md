@@ -108,7 +108,6 @@ class Penguin extends Bird implements Swimmable {}
 ---
 
 # Question 3: Dependency Inversion Principle (DIP)
-
 ## Bad Design
 
 ```java
